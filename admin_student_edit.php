@@ -139,92 +139,92 @@
                 while($fetch_edit = mysqli_fetch_assoc($edit_query)){
         ?>
             <div class="div-container add-user-div">
-            <form method="post">
-                <div class="row">
-                    <input type="hidden" name="update_id" value="<?php echo $fetch_edit['id']; ?>">
-                    <input type="hidden" name="update_user" value="<?php echo $fetch_edit['user_type']; ?>">
-                    <div class="col-lg-6 col-md-6 col-sm-12">
-                        <input name="user_type" hidden value="user">
-                        <label for="fname">Full Name: </label>
-                        <input
-                        class="form-control"
-                        type="text"
-                        name="update-name"
-                        id="name"
-                        value="<?php echo $fetch_edit['name'] ?>"
-                        required
-                        />
+                <form method="post">
+                    <div class="row">
+                        <input type="hidden" name="update_id" value="<?php echo $fetch_edit['id']; ?>">
+                        <input type="hidden" name="update_user" value="<?php echo $fetch_edit['user_type']; ?>">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <input name="user_type" hidden value="user">
+                            <label for="fname">Full Name: </label>
+                            <input
+                            class="form-control"
+                            type="text"
+                            name="update-name"
+                            id="name"
+                            value="<?php echo $fetch_edit['name'] ?>"
+                            required
+                            />
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <label for="sid">Student No.: </label>
+                            <input
+                            class="form-control"
+                            type="text"
+                            name="update-sid"
+                            id="sid"
+                            value="<?php echo $fetch_edit['student_num'] ?>"
+                            required
+                            />
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <label for="program">Program: </label>
+                            <input
+                            class="form-control"
+                            type="text"
+                            name="update-program"
+                            id="program"
+                            value="<?php echo $fetch_edit['program'] ?>"
+                            required
+                            />
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <label for="dept">Department: </label>
+                            <select name="update-dept" id="dept" class="form-control" required>
+                                <option value="<?php echo $fetch_edit['department'] ?>" selected ><?php echo $fetch_edit['department'] ?></option>
+                                <option value="SCS">SCS</option>
+                                <option value="SABM">SABM</option>
+                                <option value="SEA">SEA</option>
+                                <option value="SAS">SAS</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <label for="email">Email: </label>
+                            <input
+                            class="form-control"
+                            type="text"
+                            name="update-email"
+                            id="email"
+                            value="<?php echo $fetch_edit['email'] ?>"
+                            required
+                            />
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <label for="pass">Password: </label>
+                            <input
+                            class="form-control"
+                            type="text"
+                            name="update-password"
+                            id="pass"
+                            value="<?php echo $fetch_edit['password'] ?>"
+                            required
+                            />
+                        </div>
+                        <?php
+                                if(isset($message)){
+                                foreach ($message as $message) {
+                                echo'
+                                    <div class="alert alert-danger" role="alert text-center  "  style=" margin-top: 20px" >
+                                    '.$message.'
+                                    </div>
+                                    ';
+                                }
+                                }
+                            ?>
+                        <div class="text-center addstudent-btn">
+                            <button class="btn btn-outline-success" name="edit">SUBMIT EDIT</button>
+                        </div>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12">
-                        <label for="sid">Student No.: </label>
-                        <input
-                        class="form-control"
-                        type="text"
-                        name="update-sid"
-                        id="sid"
-                        value="<?php echo $fetch_edit['student_num'] ?>"
-                        required
-                        />
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12">
-                        <label for="program">Program: </label>
-                        <input
-                        class="form-control"
-                        type="text"
-                        name="update-program"
-                        id="program"
-                        value="<?php echo $fetch_edit['program'] ?>"
-                        required
-                        />
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12">
-                        <label for="dept">Department: </label>
-                        <select name="update-dept" id="dept" class="form-control" required>
-                            <option value="<?php echo $fetch_edit['department'] ?>" selected ><?php echo $fetch_edit['department'] ?></option>
-                            <option value="SCS">SCS</option>
-                            <option value="SABM">SABM</option>
-                            <option value="SEA">SEA</option>
-                            <option value="SAS">SAS</option>
-                        </select>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12">
-                        <label for="email">Email: </label>
-                        <input
-                        class="form-control"
-                        type="text"
-                        name="update-email"
-                        id="email"
-                        value="<?php echo $fetch_edit['email'] ?>"
-                        required
-                        />
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12">
-                        <label for="pass">Password: </label>
-                        <input
-                        class="form-control"
-                        type="text"
-                        name="update-password"
-                        id="pass"
-                        value="<?php echo $fetch_edit['password'] ?>"
-                        required
-                        />
-                    </div>
-                    <?php
-                            if(isset($message)){
-                            foreach ($message as $message) {
-                            echo'
-                                <div class="alert alert-danger" role="alert text-center  "  style=" margin-top: 20px" >
-                                '.$message.'
-                                </div>
-                                ';
-                            }
-                            }
-                        ?>
-                    <div class="text-center addstudent-btn">
-                        <button class="btn btn-outline-success" name="edit">SUBMIT EDIT</button>
-                    </div>
-                </div>
-            </form>
+                </form>
             </div>
         <?php
             }

@@ -130,7 +130,7 @@
               <span class="title">View Questions</span>
             </div>
           </a>
-          <a href="admin_question_menu1.php">
+          <a href="admin_question_menu.php">
             <div class="participant-box">
               <span class="icon view">
                 <ion-icon name="add-circle-outline"></ion-icon>
@@ -138,7 +138,7 @@
               <span class="title">Add Questions</span>
             </div>
           </a>
-          <a href="admin_question_menu2.php">
+          <a href="admin_question_edit_menu.php">
             <div class="participant-box">
               <span class="icon add">
                 <ion-icon name="options-outline"></ion-icon>

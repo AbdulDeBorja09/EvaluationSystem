@@ -39,7 +39,7 @@
         $select_user = mysqli_query($conn, "SELECT * FROM `user` WHERE email = '$email'") or die ('query failed');
     
         if(mysqli_num_rows($select_user)>0){
-          $message[] = 'Student Already Exist';
+          $message[] = 'Professor Already Exist';
     
         }else{
           if ($password != $cpassword){

@@ -75,7 +75,6 @@
               <span class="title">Questions</span>
             </a>
           </li>
-
           <li>
             <a href="admin_summary.php">
               <span class="icon">
@@ -127,8 +126,8 @@
           <div class="cards">
             <div>
               <?php 
-                    $select_admin = mysqli_query($conn, "SELECT * FROM `user` WHERE user_type = 'user'") or die ('query failed');
-                    $num_of_admin = mysqli_num_rows($select_admin);
+                  $select_admin = mysqli_query($conn, "SELECT * FROM `user` WHERE user_type = 'user'") or die ('query failed');
+                  $num_of_admin = mysqli_num_rows($select_admin);
                 ?>
               <div class="numbers"><?php echo $num_of_admin; ?></div>
               <div class="cardName">Students</div>
@@ -140,14 +139,13 @@
 
           <div class="cards">
             <div>
-            <?php 
-                    $select_prof = mysqli_query($conn, "SELECT * FROM `user` WHERE user_type = 'professor'") or die ('query failed');
-                    $num_of_prof = mysqli_num_rows($select_prof);
+              <?php 
+                  $select_prof = mysqli_query($conn, "SELECT * FROM `user` WHERE user_type = 'professor'") or die ('query failed');
+                  $num_of_prof = mysqli_num_rows($select_prof);
                 ?>
               <div class="numbers"><?php echo $num_of_prof; ?></div>
               <div class="cardName">Professor</div>
             </div>
-
             <div class="iconBx">
               <ion-icon name="book-outline"></ion-icon>
             </div>
@@ -155,7 +153,11 @@
 
           <div class="cards">
             <div>
-              <div class="numbers">0</div>
+                <?php 
+                  $select_question = mysqli_query($conn, "SELECT * FROM `evaluation`") or die ('query failed');
+                  $num_of_question = mysqli_num_rows($select_question);
+                ?> 
+              <div class="numbers"><?php echo $num_of_question; ?></div>
               <div class="cardName">Questions</div>
             </div>
 
@@ -167,41 +169,41 @@
           <div class="cards">
             <div>
               <div class="numbers">0</div>
-              <div class="cardName">Submitted</div>
+              <div class="cardName">SCS</div>
             </div>
 
             <div class="iconBx">
-              <ion-icon name="ribbon-outline"></ion-icon>
+              <ion-icon name="receipt-outline"></ion-icon>
             </div>
           </div>
           <div class="cards">
             <div>
               <div class="numbers">0</div>
-              <div class="cardName">Submitted</div>
+              <div class="cardName">SABM</div>
             </div>
 
             <div class="iconBx">
-              <ion-icon name="ribbon-outline"></ion-icon>
+              <ion-icon name="receipt-outline"></ion-icon>
             </div>
           </div>
           <div class="cards">
             <div>
               <div class="numbers">0</div>
-              <div class="cardName">Submitted</div>
+              <div class="cardName">SAS</div>
             </div>
 
             <div class="iconBx">
-              <ion-icon name="ribbon-outline"></ion-icon>
+              <ion-icon name="receipt-outline"></ion-icon>
             </div>
           </div>
           <div class="cards">
             <div>
               <div class="numbers">0</div>
-              <div class="cardName">Submitted</div>
+              <div class="cardName">SEA</div>
             </div>
 
             <div class="iconBx">
-              <ion-icon name="ribbon-outline"></ion-icon>
+              <ion-icon name="receipt-outline"></ion-icon>
             </div>
           </div>
         </div>
@@ -209,7 +211,6 @@
           <div class="recentOrders">
             <div class="cardHeader">
               <h2>Accounts</h2>
-              <a href="#" class="btn">View All</a>
             </div>
             <table>
               <thead>

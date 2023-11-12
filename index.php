@@ -18,7 +18,7 @@
         $_SESSION['admin_email'] = $row['email'];
         $_SESSION['admin_id'] = $row['id'];
         $id = $_SESSION['id'];
-        sleep(3);
+        sleep(1);
         header('location:admin_home.php');
 
       }else if($row['user_type'] == 'user') {
@@ -28,17 +28,23 @@
         sleep(3);
         header('location:student_home.php');
         
-      }
-    }
-    else{
+      }else if($row['user_type'] == 'professor') {
+        $_SESSION['prof_name'] = $row['name'];
+        $_SESSION['prof_email'] = $row['email'];
+        $_SESSION['prof_id'] = $row['id'];
+        sleep(3);
+        header('location:professor_home.php');
+      }else{
       $message[]= 'Incorrect email or password';
-    }   
+      }   
+    }
   }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="icon" href="Resources/NULOGO.webp" type="image/x-icon" />
     <link rel="icon" href="Resources/silakbologo.png" type="image/x-icon" />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -140,9 +146,6 @@
               </div>
               <div class="input-group mb-3">
 
-              </div>
-              <div class="row">
-                <small>Don't have account? <a href="signup.php">Sign Up</a></small>
               </div>
             </div>
           </form>

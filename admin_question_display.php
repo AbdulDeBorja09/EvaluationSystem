@@ -11,6 +11,13 @@
         session_destroy();
         header('location:index.php');
     }
+    if(isset($_GET['delete'])){
+        $delete_id = $_GET['delete'];
+        
+        mysqli_query($conn, "DELETE FROM `evaluation` WHERE id = '$delete_id'") or die ('query failed');
+        $message[] = 'user removed successfuly';
+        header('location:admin_question_display.php');
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -120,155 +127,197 @@
         </div>
 
         <div class="view-student-div div-containers ">
-            <h3>Professor Evalutaion</h3>
-          <table class=" table-bordered table">
+        <h3>Professor Evalutaion</h3>
+          <table class="table-bordered table">
             <thead >
               <tr >
-                <th>Category 1</th>
+                <th >Teaching Techniques</th>
+                <th>VGE</th>
+                <th>GE</th>
+                <th>SE</th>
+                <th>SME</th>
+                <th>NA</th>
+                <th>DELTE</th>
               </tr>
             </thead>
             <tbody>
             <?php 
-              $select_question = mysqli_query($conn, "SELECT * FROM `evaluation` WHERE type = 'professor' AND criteria = ' LEARNING PROCESS'") or die ('query failed');
-              if(mysqli_num_rows($select_question)>0){
-                while($fetch_question = mysqli_fetch_assoc($select_question)){
+              $select_professor = mysqli_query($conn, "SELECT * FROM `evaluation` WHERE type = 'professor' AND criteria = ' technique'") or die ('query failed');
+              if(mysqli_num_rows($select_professor)>0){
+                while($fetch_professor = mysqli_fetch_assoc($select_professor)){
             ?>
             <tr>
-                <td><?php echo $fetch_question['question'] ?></td>
-                
+                <td><?php echo $fetch_professor['question'] ?></td>
+                <td><?php echo $fetch_professor['rate1'] ?></td>
+                <td><?php echo $fetch_professor['rate2'] ?></td>
+                <td><?php echo $fetch_professor['rate3'] ?></td>
+                <td><?php echo $fetch_professor['rate4'] ?></td>
+                <td><?php echo $fetch_professor['rate5'] ?></td>
+                <td><a class="btn btn-outline-danger" href="admin_question_display..php?delete=<?php echo $fetch_professor['id']; ?>;" name="delete" onclick="return confirm('Delete this message?');" >Delete</a></td>
               </tr>
             <?php 
               }
                   }else{
                       echo '
-                          <td>No Question Added</td>
+                          <td colspan="7">No Question Added</td>
                       ';  
                   }
               ?> 
             </tbody>
             <thead>
                 <tr>
-                    <th>Category 2</th>
+                    <th colspan="7">Effective Planning</th>
                 </tr>
             </thead>
             <tbody>
             <?php 
-              $select_question = mysqli_query($conn, "SELECT * FROM `evaluation` WHERE type = 'professor' AND criteria = 'ASSESSMENT'") or die ('query failed');
-              if(mysqli_num_rows($select_question)>0){
-                while($fetch_question = mysqli_fetch_assoc($select_question)){
+              $select_professor = mysqli_query($conn, "SELECT * FROM `evaluation` WHERE type = 'professor' AND criteria = ' planning'") or die ('query failed');
+              if(mysqli_num_rows($select_professor)>0){
+                while($fetch_professor = mysqli_fetch_assoc($select_professor)){
             ?>
             <tr>
-                <td><?php echo $fetch_question['question'] ?></td>
-                
+                <td><?php echo $fetch_professor['question'] ?></td>
+                <td><?php echo $fetch_professor['rate1'] ?></td>
+                <td><?php echo $fetch_professor['rate2'] ?></td>
+                <td><?php echo $fetch_professor['rate3'] ?></td>
+                <td><?php echo $fetch_professor['rate4'] ?></td>
+                <td><?php echo $fetch_professor['rate5'] ?></td>
+                <td><a class="btn btn-outline-danger" href="admin_question_display.php?delete=<?php echo $fetch_professor['id']; ?>;" name="delete" onclick="return confirm('Delete this message?');" >Delete</a></td>
               </tr>
             <?php 
               }
                   }else{
                       echo '
-                          <td>No Question Added</td>
+                          <td colspan="7">No Question Added</td>
                       ';  
                   }
               ?> 
             </tbody>
             <thead>
                 <tr>
-                    <th>Category 3</th>
+                    <th colspan="7">Classroom Environment</th>
                 </tr>
             </thead>
             <tbody>
             <?php 
-              $select_question = mysqli_query($conn, "SELECT * FROM `evaluation` WHERE type = 'professor' AND criteria = 'TEACHER QUALITIES'") or die ('query failed');
-              if(mysqli_num_rows($select_question)>0){
-                while($fetch_question = mysqli_fetch_assoc($select_question)){
+              $select_professor = mysqli_query($conn, "SELECT * FROM `evaluation` WHERE type = 'professor' AND criteria = ' environment'") or die ('query failed');
+              if(mysqli_num_rows($select_professor)>0){
+                while($fetch_professor = mysqli_fetch_assoc($select_professor)){
             ?>
             <tr>
-                <td><?php echo $fetch_question['question'] ?></td>
+                <td><?php echo $fetch_professor['question'] ?></td>
+                <td><?php echo $fetch_professor['rate1'] ?></td>
+                <td><?php echo $fetch_professor['rate2'] ?></td>
+                <td><?php echo $fetch_professor['rate3'] ?></td>
+                <td><?php echo $fetch_professor['rate4'] ?></td>
+                <td><?php echo $fetch_professor['rate5'] ?></td>
+                <td><a class="btn btn-outline-danger" href="admin_question_display.php?delete=<?php echo $fetch_professor['id']; ?>;" name="delete" onclick="return confirm('Delete this message?');" >Delete</a></td>
                 
               </tr>
             <?php 
               }
                   }else{
                       echo '
-                          <td>No Question Added</td>
+                          <td colspan="6">No Question Added</td>
                       ';  
                   }
               ?> 
             </tbody>
           </table>
         </div>
-
 
         <div class="view-student-div div-containers ">
             <h3>Program Evaluation</h3>
           <table class=" table-bordered table">
             <thead >
               <tr >
-                <th>Learning Process</th>
+                <th>Satisfaction:</th>
+                <th>VGE</th>
+                <th>GE</th>
+                <th>SE</th>
+                <th>SME</th>
+                <th>NA</th>
+                <th>DELETE</th>
               </tr>
             </thead>
             <tbody>
             <?php 
-              $select_question = mysqli_query($conn, "SELECT * FROM `evaluation` WHERE type = 'program' AND criteria = ' LEARNING PROCESS'") or die ('query failed');
-              if(mysqli_num_rows($select_question)>0){
-                while($fetch_question = mysqli_fetch_assoc($select_question)){
+              $select_program = mysqli_query($conn, "SELECT * FROM `evaluation` WHERE type = 'program' AND criteria = ' satisfaction'") or die ('query failed');
+              if(mysqli_num_rows($select_program)>0){
+                while($fetch_program = mysqli_fetch_assoc($select_program)){
             ?>
             <tr>
-                <td><?php echo $fetch_question['question'] ?></td>
-                
+                <td><?php echo $fetch_program['question'] ?></td>
+                <td><?php echo $fetch_program['rate1'] ?></td>
+                <td><?php echo $fetch_program['rate2'] ?></td>
+                <td><?php echo $fetch_program['rate3'] ?></td>
+                <td><?php echo $fetch_program['rate4'] ?></td>
+                <td><?php echo $fetch_program['rate5'] ?></td>
+                <td><a class="btn btn-outline-danger" href="admin_question_display.php?delete=<?php echo $fetch_program['id']; ?>;" name="delete" onclick="return confirm('Delete this message?');" >Delete</a></td>
               </tr>
             <?php 
               }
                   }else{
                       echo '
-                          <td>No Question Added</td>
+                          <td colspan="7">No Question Added</td>
                       ';  
                   }
               ?> 
             </tbody>
             <thead>
                 <tr>
-                    <th>Student Assessment</th>
+                    <th colspan="7">Impact</th>
                 </tr>
             </thead>
             <tbody>
             <?php 
-              $select_question = mysqli_query($conn, "SELECT * FROM `evaluation` WHERE type = 'program' AND criteria = 'ASSESSMENT'") or die ('query failed');
-              if(mysqli_num_rows($select_question)>0){
-                while($fetch_question = mysqli_fetch_assoc($select_question)){
+              $select_program = mysqli_query($conn, "SELECT * FROM `evaluation` WHERE type = 'program' AND criteria = ' impact'") or die ('query failed');
+              if(mysqli_num_rows($select_program)>0){
+                while($fetch_program = mysqli_fetch_assoc($select_program)){
             ?>
             <tr>
-                <td><?php echo $fetch_question['question'] ?></td>
-                
+                <td><?php echo $fetch_program['question'] ?></td>
+                <td><?php echo $fetch_program['rate1'] ?></td>
+                <td><?php echo $fetch_program['rate2'] ?></td>
+                <td><?php echo $fetch_program['rate3'] ?></td>
+                <td><?php echo $fetch_program['rate4'] ?></td>
+                <td><?php echo $fetch_program['rate5'] ?></td>
+                <td><a class="btn btn-outline-danger" href="admin_question_display.php?delete=<?php echo $fetch_program['id']; ?>;" name="delete" onclick="return confirm('Delete this message?');" >Delete</a></td>
               </tr>
             <?php 
               }
                   }else{
                       echo '
-                          <td>No Question Added</td>
+                          <td colspan="7">No Question Added</td>
                       ';  
                   }
               ?> 
             </tbody>
             <thead>
                 <tr>
-                    <th>Teacher Qualities</th>
+                    <th class="table-category" colspan="7">Implementations</th>
                 </tr>
             </thead>
             <tbody>
             <?php 
-              $select_question = mysqli_query($conn, "SELECT * FROM `evaluation` WHERE type = 'program' AND criteria = 'TEACHER QUALITIES'") or die ('query failed');
-              if(mysqli_num_rows($select_question)>0){
-                while($fetch_question = mysqli_fetch_assoc($select_question)){
+              $select_program= mysqli_query($conn, "SELECT * FROM `evaluation` WHERE type = 'program' AND criteria = ' implementation'") or die ('query failed');
+              if(mysqli_num_rows($select_program)>0){
+                while($fetch_program = mysqli_fetch_assoc($select_program)){
             ?>
             <tr>
-                <td><?php echo $fetch_question['question'] ?></td>
-                
+                <td><?php echo $fetch_program['question'] ?></td>
+                <td><?php echo $fetch_program['rate1'] ?></td>
+                <td><?php echo $fetch_program['rate2'] ?></td>
+                <td><?php echo $fetch_program['rate3'] ?></td>
+                <td><?php echo $fetch_program['rate4'] ?></td>
+                <td><?php echo $fetch_program['rate5'] ?></td>
+                <td><a class="btn btn-outline-danger" href="admin_question_display.php?delete=<?php echo $fetch_program['id']; ?>;" name="delete" onclick="return confirm('Delete this message?');" >Delete</a></td>
               </tr>
             <?php 
               }
                   }else{
                       echo '
-                          <td>No Question Added</td>
+                          <td colspan="7">No Question Added</td>
                       ';  
                   }
               ?> 
@@ -277,76 +326,97 @@
         </div>
 
         <div class="view-student-div div-containers ">
-            <h3>Facility Evalutaion</h3>
-          <table class=" table-bordered table">
+            <h3>Student Evalutaion</h3>
+          <table class="table-bordered table">
             <thead >
               <tr >
-                <th>Category 1</th>
+                <th>Knowledge Mastery:</th>
+                <th>VGE</th>
+                <th>GE</th>
+                <th>SE</th>
+                <th>SME</th>
+                <th>NA</th>
+                <th>EDIT</th>
               </tr>
             </thead>
             <tbody>
             <?php 
-              $select_question = mysqli_query($conn, "SELECT * FROM `evaluation` WHERE type = 'facility' AND criteria = ' LEARNING PROCESS'") or die ('query failed');
-              if(mysqli_num_rows($select_question)>0){
-                while($fetch_question = mysqli_fetch_assoc($select_question)){
+              $select_student = mysqli_query($conn, "SELECT * FROM `evaluation` WHERE type = 'student' AND criteria = ' mastery'") or die ('query failed');
+              if(mysqli_num_rows($select_student)>0){
+                while($fetch_student = mysqli_fetch_assoc($select_student)){
             ?>
             <tr>
-                <td><?php echo $fetch_question['question'] ?></td>
-                
-              </tr>
+                <td><?php echo $fetch_student['question'] ?></td>
+                <td><?php echo $fetch_student['rate1'] ?></td>
+                <td><?php echo $fetch_student['rate2'] ?></td>
+                <td><?php echo $fetch_student['rate3'] ?></td>
+                <td><?php echo $fetch_student['rate4'] ?></td>
+                <td><?php echo $fetch_student['rate5'] ?></td>
+                <td><a class="btn btn-outline-danger" href="admin_question_display.php?delete=<?php echo $fetch_student['id']; ?>;" name="delete" onclick="return confirm('Delete this message?');" >Delete</a></td>
+            </tr>
             <?php 
               }
                   }else{
                       echo '
-                          <td>No Question Added</td>
+                          <td colspan="7">No Question Added</td>
                       ';  
                   }
               ?> 
             </tbody>
             <thead>
                 <tr>
-                    <th>Category 2</th>
+                    <th colspan="7">Critical Thinking:</th>
                 </tr>
             </thead>
             <tbody>
             <?php 
-              $select_question = mysqli_query($conn, "SELECT * FROM `evaluation` WHERE type = 'facility' AND criteria = 'ASSESSMENT'") or die ('query failed');
-              if(mysqli_num_rows($select_question)>0){
-                while($fetch_question = mysqli_fetch_assoc($select_question)){
+              $select_student= mysqli_query($conn, "SELECT * FROM `evaluation` WHERE type = 'student' AND criteria = ' thinking'") or die ('query failed');
+              if(mysqli_num_rows($select_student)>0){
+                while($fetch_student = mysqli_fetch_assoc($select_student)){
             ?>
             <tr>
-                <td><?php echo $fetch_question['question'] ?></td>
-                
+                <td><?php echo $fetch_student['question'] ?></td>
+                <td><?php echo $fetch_student['rate1'] ?></td>
+                <td><?php echo $fetch_student['rate2'] ?></td>
+                <td><?php echo $fetch_student['rate3'] ?></td>
+                <td><?php echo $fetch_student['rate4'] ?></td>
+                <td><?php echo $fetch_student['rate5'] ?></td>
+                <td><a class="btn btn-outline-danger" href="admin_question_display.php?delete=<?php echo $fetch_student['id']; ?>;" name="delete" onclick="return confirm('Delete this message?');" >Delete</a></td>
               </tr>
             <?php 
               }
                   }else{
                       echo '
-                          <td>No Question Added</td>
+                          <td colspan="7">No Question Added</td>
                       ';  
                   }
               ?> 
             </tbody>
             <thead>
                 <tr>
-                    <th>Category 3</th>
+                    <th colspan="7">Collaboration:</th>
                 </tr>
             </thead>
             <tbody>
             <?php 
-              $select_question = mysqli_query($conn, "SELECT * FROM `evaluation` WHERE type = 'facility' AND criteria = 'TEACHER QUALITIES'") or die ('query failed');
-              if(mysqli_num_rows($select_question)>0){
-                while($fetch_question = mysqli_fetch_assoc($select_question)){
+              $select_student= mysqli_query($conn, "SELECT * FROM `evaluation` WHERE type = 'student' AND criteria = ' collab'") or die ('query failed');
+              if(mysqli_num_rows($select_student)>0){
+                while($fetch_student = mysqli_fetch_assoc($select_student)){
             ?>
             <tr>
-                <td><?php echo $fetch_question['question'] ?></td>
-                
+                <td><?php echo $fetch_student['question'] ?></td>
+                <td><?php echo $fetch_student['rate1'] ?></td>
+                <td><?php echo $fetch_student['rate2'] ?></td>
+                <td><?php echo $fetch_student['rate3'] ?></td>
+                <td><?php echo $fetch_student['rate4'] ?></td>
+                <td><?php echo $fetch_student['rate5'] ?></td>
+                <td><a class="btn btn-outline-danger" href="admin_question_display.php?delete=<?php echo $fetch_student['id']; ?>;" name="delete" onclick="return confirm('Delete this message?');" >Delete</a></td>
               </tr>
             <?php 
               }
                   }else{
                       echo '
-                          <td>No Question Added</td>
+                          <td colspan="7">No Question Added</td>
                       ';  
                   }
               ?> 

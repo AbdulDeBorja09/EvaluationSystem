@@ -158,7 +158,7 @@
           <button class="btn" onclick="history.back()">
             <ion-icon name="caret-back-outline"></ion-icon>
           </button>
-          <h3>Add Professor</h3>
+          <h3>Add Admin</h3>
         </div>
         <div class="div-container add-user-div">
           <form method="post">

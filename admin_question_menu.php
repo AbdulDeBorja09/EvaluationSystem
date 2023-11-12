@@ -119,18 +119,10 @@
           <button class="btn" onclick="history.back()">
             <ion-icon name="caret-back-outline"></ion-icon>
           </button>
-          <h3>View Questions</h3>
+          <h3>Add Questions</h3>
         </div>
         <div class="box-flex">
-          <a href="admin_participant_display.php">
-            <div class="participant-box">
-              <span class="icon view">
-                <ion-icon name="school-outline"></ion-icon>
-              </span>
-              <span class="title">Program</span>
-            </div>
-          </a>
-          <a href="admin_participant_display.php">
+            <a href="admin_question_add_prof.php">
             <div class="participant-box">
               <span class="icon view">
                 <ion-icon name="person-outline"></ion-icon>
@@ -138,12 +130,20 @@
               <span class="title">Professor</span>
             </div>
           </a>
-          <a href="admin_participant_add.php">
+          <a href="admin_question_add_prog.php">
+            <div class="participant-box">
+              <span class="icon view">
+                <ion-icon name="desktop-outline"></ion-icon>
+              </span>
+              <span class="title">Program</span>
+            </div>
+          </a>
+          <a href="admin_question_add_student.php">
             <div class="participant-box">
               <span class="icon add">
-                <ion-icon name="business-outline"></ion-icon>
+                <ion-icon name="school-outline"></ion-icon>
               </span>
-              <span class="title">Facility</span>
+              <span class="title">Student</span>
             </div>
           </a>
         </div>

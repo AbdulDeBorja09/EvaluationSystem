@@ -119,7 +119,7 @@
           <button class="btn" onclick="history.back()">
             <ion-icon name="caret-back-outline"></ion-icon>
           </button>
-          <h3>Participants</h3>
+          <h3>Professor</h3>
         </div>
 
         <div class="box-flex">
@@ -128,7 +128,7 @@
               <span class="icon view">
                 <ion-icon name="person-outline"></ion-icon>
               </span>
-              <span class="title">View Participants</span>
+              <span class="title">View Professor</span>
             </div>
           </a>
           <a href="admin_participant_add.php">

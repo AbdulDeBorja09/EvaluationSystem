@@ -55,7 +55,7 @@
           >
             <div class="offcanvas-header">
               <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
-                <?php echo $_SESSION['user_name']; ?>
+                <?php echo $_SESSION['prof_name']; ?>
               </h5>
               <button
                 type="button"
@@ -101,7 +101,6 @@
       </nav>
       <div class="bline"></div>
     </div>
-
     <script src="Src/main.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"

@@ -134,7 +134,7 @@
           <button class="btn" onclick="history.back()">
             <ion-icon name="caret-back-outline"></ion-icon>
           </button>
-          <h3>All Student Info</h3>
+          <h3>All Professor Info</h3>
         </div>
         <?php
         if(isset($_GET['edit'])){

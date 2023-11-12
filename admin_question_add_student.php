@@ -132,11 +132,11 @@
           <button class="btn" onclick="history.back()">
             <ion-icon name="caret-back-outline"></ion-icon>
           </button>
-          <h3>Professor Evaluation</h3>
+          <h3>Student Evaluation</h3>
         </div>
         <div class="div-container add-user-div">
           <form method="post">
-            <input name="type" value="professor" hidden>
+            <input name="type" value="student" hidden>
             <div class="row">
                 <div class="col-lg-6 col-sm-12 ">
                     <label for="type">Department: </label>
@@ -150,9 +150,9 @@
                 <div class="col-lg-6 col-sm-12 ">
                     <label for="criteria">Criteria:</label>
                     <select class="form-control" name="criteria" id="dept" required>
-                        <option value="technique">Teaching Techniques</option>
-                        <option value="planning">Effective Planning</option>
-                        <option value="environment">Classroom Environment</option>
+                        <option value="mastery">Knowledge Mastery</option>
+                        <option value="thinking">Critical Thinking</option>
+                        <option value="collab">Collaboration</option>
                     </select>
                 </div>
                 <div class="col-lg-12 col-sm-12">
