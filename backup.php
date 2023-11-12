@@ -64,18 +64,31 @@
           </thead>
           <tbody>
             <?php 
-              $select_questions = mysqli_query($conn, "SELECT * FROM `questions` WHERE type = 'student'") or die ('query failed');
-              if(mysqli_num_rows($select_questions)>0){
-                while($fetch_questions = mysqli_fetch_assoc($select_questions)){
+              $select_question = mysqli_query($conn, "SELECT * FROM `evaluation` WHERE type = 'student' AND criteria = ' mastery'") or die ('query failed');
+              if(mysqli_num_rows($select_question)>0){
+                while($fetch_question = mysqli_fetch_assoc($select_question)){
             ?>
             <tr>
-              <td><?php echo $fetch_questions['question1'] ?></td>
-            </tr>
-            <tr>
-              <td><?php echo $fetch_questions['question2'] ?></td>
-            </tr>
-            <tr>
-              <td><?php echo $fetch_questions['question3'] ?></td>
+              <td><?php echo $fetch_question['question'] ?></td>
+              <td>
+                <input type="radio" name="rate[<?php echo $fetch_question['id'] ?>]" value="<?php echo $fetch_question['rate1'] ?>" class="radio-btn" />
+              </td>
+              <td>
+                <input type="radio" name="rate[<?php echo $fetch_question['id'] ?>]" value="<?php echo $fetch_question['rate2'] ?>" class="radio-btn" />
+              </td>
+              <td>
+                <input type="radio" name="rate[<?php echo $fetch_question['id'] ?>]" value="<?php echo $fetch_question['rate3'] ?>" class="radio-btn" />
+              </td>
+              <td>
+                <input type="radio" name="rate[<?php echo $fetch_question['id'] ?>]" value="<?php echo $fetch_question['rate4'] ?>" class="radio-btn" />
+              </td>
+              <td>
+                <input type="radio" name="rate[<?php echo $fetch_question['id'] ?>]" value="<?php echo $fetch_question['rate5'] ?>" class="radio-btn" checked/>
+              </td>
+              
+              <?php $rates = "";
+               
+              ?> 
             </tr>
             <?php 
               }

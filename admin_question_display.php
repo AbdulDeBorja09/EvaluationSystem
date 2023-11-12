@@ -324,7 +324,6 @@
             </tbody>
           </table>
         </div>
-
         <div class="view-student-div div-containers ">
             <h3>Student Evalutaion</h3>
           <table class="table-bordered table">

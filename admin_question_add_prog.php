@@ -14,18 +14,24 @@
     if(isset($_POST['add_question'])){
         $type = mysqli_real_escape_string($conn, $_POST['type']);
         $dept = mysqli_real_escape_string($conn, $_POST['dept']);
-        $criteria = mysqli_real_escape_string($conn, $_POST['criteria']);
-        $question = mysqli_real_escape_string($conn, $_POST['question']);
+        $question1 = mysqli_real_escape_string($conn, $_POST['q1']);
+        $question2 = mysqli_real_escape_string($conn, $_POST['q2']);
+        $question3 = mysqli_real_escape_string($conn, $_POST['q3']);
+        $question4 = mysqli_real_escape_string($conn, $_POST['q4']);
+        $question5 = mysqli_real_escape_string($conn, $_POST['q5']);
+        $question6 = mysqli_real_escape_string($conn, $_POST['q6']);
+        $question7 = mysqli_real_escape_string($conn, $_POST['q7']);
+        $question8 = mysqli_real_escape_string($conn, $_POST['q8']);
+        $question9 = mysqli_real_escape_string($conn, $_POST['q9']);
         $rate1 = mysqli_real_escape_string($conn, $_POST['rate1']);
         $rate2 = mysqli_real_escape_string($conn, $_POST['rate2']);
         $rate3 = mysqli_real_escape_string($conn, $_POST['rate3']);
         $rate4 = mysqli_real_escape_string($conn, $_POST['rate4']);
         $rate5 = mysqli_real_escape_string($conn, $_POST['rate5']);
-        $insert_product = mysqli_query($conn, "INSERT INTO `evaluation` (`type`, `criteria`, `question`, `department`, `rate1`, `rate2`, `rate3` ,`rate4` ,`rate5`)
-        VALUES ('$type', ' $criteria', '$question', '$dept', '$rate1', '$rate2', '$rate3', '$rate4', '$rate5')") or die ('query failed');
+        $insert_product = mysqli_query($conn, "INSERT INTO `questions` (`type`,`department`, `question1`, `question2`, `question3`,`question4`,`question5`,`question6`,`question7`,`question8`,`question9`, `rate1`, `rate2`, `rate3` ,`rate4` ,`rate5`)
+        VALUES ('$type', '$dept', '$question1', '$question2', '$question3', '$question4', '$question5', '$question6', '$question7', '$question8', '$question9', '$rate1', '$rate2', '$rate3', '$rate4', '$rate5')") or die ('query failed');
         header('location:admin_question_display.php');
     }
-    
 ?>
 
 <!DOCTYPE html>
@@ -138,7 +144,7 @@
           <form method="post">
             <input name="type" value="program" hidden>
             <div class="row">
-                <div class="col-lg-6 col-sm-12 ">
+                <div class="col-lg-12 col-sm-12 ">
                     <label for="type">Department: </label>
                     <select class="form-control" name="dept" id="dept" required>
                         <option value="SCS">SCS</option>
@@ -147,17 +153,53 @@
                         <option value="SAS">SAS</option>
                     </select>
                 </div>
-                <div class="col-lg-6 col-sm-12 ">
-                    <label for="criteria">Criteria:</label>
-                    <select class="form-control" name="criteria" id="dept" required>
-                        <option value="satisfaction">Satisfaction</option>
-                        <option value="impact">Impact</option>
-                        <option value="implementation">Implementation</option>
-                    </select>
+                <div class="col-lg-12 col-sm-12">
+                    <br>
+                    <h5>Satisfaction:</h5>
                 </div>
                 <div class="col-lg-12 col-sm-12">
-                    <label for="question">Question: </label>
-                    <textarea class="form-control" name="question" id="question" cols="30" rows="4" required></textarea>
+                    <label for="q1">Question 1</label>
+                    <input name="q1" id="q1" type="text" class="form-control" required>
+                </div>
+                <div class="col-lg-12 col-sm-12">
+                    <label for="q2">Question 2</label>
+                    <input name="q2" id="q2" type="text" class="form-control" required>
+                </div>
+                <div class="col-lg-12 col-sm-12">
+                    <label for="q3">Question 3</label>
+                    <input name="q3" id="q3" type="text" class="form-control" required>
+                </div>
+                <div class="col-lg-12 col-sm-12">
+                    <br>
+                    <h5>Impact:</h5>
+                </div>
+                <div class="col-lg-12 col-sm-12">
+                    <label for="q4">Question 1</label>
+                    <input name="q4" id="q4" type="text" class="form-control" required>
+                </div>
+                <div class="col-lg-12 col-sm-12">
+                    <label for="q5">Question 2</label>
+                    <input name="q5" id="q5" type="text" class="form-control" required>
+                </div>
+                <div class="col-lg-12 col-sm-12">
+                    <label for="q6">Question 3</label>
+                    <input name="q6" id="q6" type="text" class="form-control" required>
+                </div>
+                <div class="col-lg-12 col-sm-12">
+                    <br>
+                    <h5>Implementations:</h5>
+                </div>
+                <div class="col-lg-12 col-sm-12">
+                    <label for="q7">Question 1</label>
+                    <input name="q7" id="q7"type="text" class="form-control" required>
+                </div>
+                <div class="col-lg-12 col-sm-12">
+                    <label for="q8">Question 2</label>
+                    <input name="q8" id="q8"type="text" class="form-control" required>
+                </div>
+                <div class="col-lg-12 col-sm-12">
+                    <label for="q9">Question 3</label>
+                    <input name="q9" id="q9" type="text" class="form-control" required>
                 </div>
                 <div class="col-lg-12 col-sm-12">
                     <br>
