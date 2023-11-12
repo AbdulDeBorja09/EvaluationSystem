@@ -1,40 +1,36 @@
 <?php
   include  'connection.php';
   session_start();
-  if(isset($_POST['login-btn'])){
-    
+  if(isset($_POST['signup-btn'])){
+    $filter_name = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
+    $name = mysqli_real_escape_string($conn, $filter_name);
+
     $filter_email = filter_var($_POST['email'], FILTER_SANITIZE_STRING);
     $email = mysqli_real_escape_string($conn, $filter_email);
 
     $filter_password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
     $password = mysqli_real_escape_string($conn, $filter_password);
 
-    $select_user = mysqli_query($conn, "SELECT * FROM `user` WHERE email = '$email' AND password = '$password'") or die ('query failed');
+    $filter_cpassword = filter_var($_POST['cpassword'], FILTER_SANITIZE_STRING);
+    $cpassword = mysqli_real_escape_string($conn, $filter_cpassword);
+
+    $select_user = mysqli_query($conn, "SELECT * FROM `user` WHERE email = '$email'") or die ('query failed');
 
     if(mysqli_num_rows($select_user)>0){
-      $row = mysqli_fetch_assoc($select_user);
-      if($row['user_type'] == 'admin') {
-        $_SESSION['admin_name'] = $row['name'];
-        $_SESSION['admin_email'] = $row['email'];
-        $_SESSION['admin_id'] = $row['id'];
-        $id = $_SESSION['id'];
-        sleep(3);
-        header('location:admin_home.php');
+      $message[] = 'User Already Exist';
 
-      }else if($row['user_type'] == 'user') {
-        $_SESSION['user_name'] = $row['name'];
-        $_SESSION['user_email'] = $row['email'];
-        $_SESSION['user_id'] = $row['id'];
-        sleep(3);
-        header('location:student_home.php');
-        
+    }else{
+      if ($password != $cpassword){
+        $message[] = 'Wrong Password';
+      }else{
+        mysqli_query($conn, "INSERT INTO `user` (`name`, `email` , `password`) VALUES ('$name', '$email', '$password')") or die ('query failed');
+        $message[] = 'Register Successfully';
+
       }
     }
-    else{
-      $message[]= 'Incorrect email or password';
-    }   
   }
-?>
+
+  ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -79,9 +75,18 @@
         <div class="col-md-6 right-box">
           <form method="post">
             <div class="row align-items-center">
-              <div class="header-text mb-4">
-                <h2>Login</h2>
-                <p>Welcome Back Nationalians!</p>
+              <div class="header-text mb-3">
+                <h2>Sign Up</h2>
+                <p>Weclome to Evaluation System</p>
+              </div>
+              <div class="input-group mb-3">
+                <input
+                  name="name"
+                  type="text"
+                  class="form-control form-control-lg bg-light fs-6"
+                  placeholder="Full Name"
+                  required
+                />
               </div>
               <div class="input-group mb-3">
                 <input
@@ -101,8 +106,17 @@
                   required
                 />
               </div>
+              <div class="input-group mb-3">
+                <input
+                  name="cpassword"
+                  type="password"
+                  class="form-control form-control-lg bg-light fs-6"
+                  placeholder="Confrirm Password"
+                  required
+                />
+              </div>
 
-              <div class="input-group mb-5 d-flex justify-content-between">
+              <div class="input-group mb-2 d-flex justify-content-between">
                 <div class="form-check">
                   <input
                     type="checkbox"
@@ -117,7 +131,7 @@
                   <small><a href="#">Forgot Password?</a></small>
                 </div>
               </div>
-              <div class="input-groups">
+              <div class="input-groups text-center">
               <?php
                     if(isset($message)){
                       foreach ($message as $message) {
@@ -132,17 +146,18 @@
               </div>
               <div class="input-group mb-3">
                 <button
-                  name="login-btn"
+                  type="submit"
+                  name="signup-btn"
                   class="btn btn-lg btn-primary w-100 fs-6"
                 >
                   Login
                 </button>
               </div>
-              <div class="input-group mb-3">
-
-              </div>
+              <div class="input-group mb-3"></div>
               <div class="row">
-                <small>Don't have account? <a href="signup.php">Sign Up</a></small>
+                <small
+                  >Already have account? <a href="index.php">Sign In</a></small
+                >
               </div>
             </div>
           </form>
